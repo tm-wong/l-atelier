@@ -21,11 +21,13 @@ module.exports = async function(fastify, opts) {
             const result = await client.query('SELECT * FROM test_table');
             const results = { results: (result) ? result.rows : null};
             client.release();
-            log.info('===== > results ' + JSON.stringify(results, null, 4));
+            log.info('===== > results.name ' + results.name);
             assert.strictEqual(results.name, 'hello database');
-            return { status: 'OK' };
+            // return { status: 'OK' };
+            return results;
         } catch (err) {
             log.error(err);
-            return errHandler(err, reply);        }
+            return errHandler(err, reply);
+        }
     });
 };
