@@ -3,8 +3,10 @@
 const path = require('path');
 const AutoLoad = require('@fastify/autoload');
 
+const port = process.env.PORT || 3000;
+
 // Pass --options via CLI arguments in command to enable these options.
-module.exports.options = {};
+module.exports.options = { port };
 
 module.exports = async function(fastify, opts) {
     // Place here your custom code!
@@ -30,4 +32,6 @@ module.exports = async function(fastify, opts) {
         reply.status(404);
         return 'Not Found\n';
     });
+
+
 };
