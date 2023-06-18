@@ -19,7 +19,8 @@ module.exports = async function(fastify, opts) {
         try {
             const client = await pool.connect();
             const result = await client.query('SELECT * FROM test_table');
-            const results = { results: (result) ? result.rows : null};
+            // const results = { results: (result) ? result.rows : null};
+            const results = (result) ? result.rows : null;
             client.release();
             log.info('===== > results ' + JSON.stringify(results[0]?.name));
             // assert.strictEqual(results[0].name, 'hello database');
