@@ -19,12 +19,12 @@ module.exports = async function(fastify, opts) {
         try {
             const client = await pool.connect();
             const result = await client.query('SELECT * FROM test_table');
-            const results = { results: (result) ? result.rows : null};
+            // const results = { results: (result) ? result.rows : null};
             client.release();
-            log.info('===== > results.name ' + results.name);
+            log.info('===== > result.name ' + result.name);
             // assert.strictEqual(results.name, 'hello database');
             // return { status: 'OK' };
-            return results;
+            return result;
         } catch (err) {
             log.error(err);
             return errHandler(err, reply);
