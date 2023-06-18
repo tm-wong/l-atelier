@@ -26,7 +26,7 @@ module.exports = fp(async function(fastify, opts) {
                     case 'Request Timeout':
                         return reply.requestTimeout();
                     default:
-                        return reply.serviceUnavailable();
+                        return reply.internalServerError();
             }
 
         } catch (err) {
