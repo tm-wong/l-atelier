@@ -3,15 +3,14 @@
 const path = require('path');
 const AutoLoad = require('@fastify/autoload');
 
-const port = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+// const HOST = '127.0.0.1';
 
 // Pass --options via CLI arguments in command to enable these options.
-module.exports.options = { host: '127.0.0.1', port: port };
+module.exports.options = {};
 
 module.exports = async function(fastify, opts) {
     // Place here your custom code!
-
-    fastify.log.info('PORT', port);
 
 
     // Do not touch the following lines
@@ -35,6 +34,4 @@ module.exports = async function(fastify, opts) {
         reply.status(404);
         return 'Not Found\n';
     });
-
-
 };
