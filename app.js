@@ -2,9 +2,8 @@
 
 const path = require('path');
 const AutoLoad = require('@fastify/autoload');
+const cors = require('@fastify/cors');
 
-// const PORT = process.env.PORT || 3000;
-// const HOST = '127.0.0.1';
 
 // Pass --options via CLI arguments in command to enable these options.
 module.exports.options = {};
@@ -12,6 +11,12 @@ module.exports.options = {};
 module.exports = async function(fastify, opts) {
     // Place here your custom code!
 
+    // CORS
+    await fastify.register(cors, { 
+        origin: '*',
+        methods: ['GET'],
+        allowedHeaders: ['Accept', 'Content-Type', 'Authorization']
+    });
 
     // Do not touch the following lines
 

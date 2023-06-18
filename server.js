@@ -11,13 +11,11 @@ const closeWithGrace = require('close-with-grace');
 
 // Instantiate fastify with some config
 const app = fastify({
-    logger: {
-        level: 'info'
-    }
+    logger: { level: 'debug' }
 });
 
 // Register your application as a normal plugin.
-const appService = require('./app.js');
+const appService = require('./app');
 app.register(appService);
 
 // delay is the number of milliseconds for the graceful close to finish
@@ -35,7 +33,7 @@ app.addHook('onClose', (instance, done) => {
 });
 
 // Start listening.
-app.listen({ port: process.env.PORT || 3000, host: '0.0.0.0' }, (err) => {
+app.listen({ port: process.env.PORT || 3000, host: process.env.HOST }, err => {
     if (err) {
         app.log.error(err);
         // eslint-disable-next-line no-process-exit
