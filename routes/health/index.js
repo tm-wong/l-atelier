@@ -10,6 +10,7 @@ const pool = new Pool({
     }
 });
 
+
 // eslint-disable-next-line no-unused-vars
 module.exports = async function(fastify, opts) {
 
@@ -19,12 +20,13 @@ module.exports = async function(fastify, opts) {
         try {
             const client = await pool.connect();
             const result = await client.query('SELECT * FROM test_table');
-            // const results = { results: (result) ? result.rows : null};
+            const results = { results: (result) ? result.rows : null};
             client.release();
-            log.info('===== > result.name ' + result.name);
-            // assert.strictEqual(results.name, 'hello database');
-            // return { status: 'OK' };
-            return result;
+
+            assert.strictEqual(results[0].name, 'hello database');
+
+            return { status: 'OK' };
+
         } catch (err) {
             log.error(err);
             return errHandler(err, reply);
