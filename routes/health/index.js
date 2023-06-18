@@ -23,9 +23,12 @@ module.exports = async function(fastify, opts) {
             const results = { results: (result) ? result.rows : null};
             client.release();
 
-            assert.strictEqual(results[0].name, 'hello database');
+            log.info('==========> results ' + JSON.stringify(results, null, 4));
 
-            return { status: 'OK' };
+            // assert.strictEqual(results[0].name, 'hello database');
+
+            // return { status: 'OK' };
+            return results;
 
         } catch (err) {
             log.error(err);
