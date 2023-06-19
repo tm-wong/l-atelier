@@ -19,10 +19,10 @@ const pool = new Pool({
 // eslint-disable-next-line no-unused-vars
 module.exports = async function(fastify, opts) {
 
-    const { log, httpErrors } = fastify;
+    const { log } = fastify;
 
-    fastify.get('/', async function(request, reply) {
-   
+    fastify.get('/', async function(/* request, reply */) {
+
         try {
             // Récupération d'un client depuis le pool
             // de connexions à la base de données
@@ -41,7 +41,7 @@ module.exports = async function(fastify, opts) {
             // Vérification des résulatats
             assert.strictEqual(content[0]?.name, 'hello database');
 
-            // Confirmation du statut 
+            // Confirmation du statut
             return { status: 'OK' };
 
         } catch (err) {

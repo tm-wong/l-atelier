@@ -10,7 +10,7 @@ module.exports = async function(fastify, opts) {
     // Décalaration des utilitaires courants
     const { log, httpErrors } = fastify;
 
-    // Route 
+    // Route
     fastify.get('/', async function(request, reply) {
         try {
             const authorized = await fastify.auth(request, reply);
