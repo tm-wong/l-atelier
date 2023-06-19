@@ -1,0 +1,34 @@
+# docker-compose.yml
+version: '3'
+services:
+  app:
+    container_name: app
+    restart: on-failure
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: 'postgres://l_atelier:2dF67OEB1h34CMIt@postgres:5432/db_players'
+      NODE_ENV: dev
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    command: bash -c 'npm run dev' 
+    volumes:
+      - .:/app/
+      - /node_modules
+
+  postgres:
+    container_name: db
+    image: postgres:15
+    ports:
+      - '35432:5432'
+    environment:
+      POSTGRES_USER: 'l_atelier'
+      POSTGRES_PASSWORD: '2dF67OEB1h34CMIt'
+      POSTGRES_DB: 'db_players'
+    volumes: 
+      # create data volume
+      - ./database/postgres-data/data:/var/lib/postgresql/data
+      # copy the sql script to create tables
+      - ./database/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
