@@ -14,7 +14,6 @@ test('default root route', async(t) => {
     });
 
     const content = `
-
 ********************************************************************************
 
     Tennis Players API - REST

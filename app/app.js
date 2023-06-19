@@ -12,7 +12,7 @@ module.exports = async function(fastify, opts) {
     // Place here your custom code!
 
     // CORS
-    await fastify.register(cors, { 
+    await fastify.register(cors, {
         origin: '*',
         methods: ['GET'],
         allowedHeaders: ['Accept', 'Content-Type', 'Authorization']

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "tap \"test/**/*.test.js\"",
+    "test:watch": "tap --watch \"test/**/*.test.js\"",
     "start": "node server.js",
     "dev": "fastify start -w -l info -P app.js"
   },

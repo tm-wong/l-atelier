@@ -7,7 +7,6 @@ module.exports = async function(fastify, opts) {
 
         reply.type('text/plain');
         const content = `
-
 ********************************************************************************
 
     Tennis Players API - REST
@@ -16,7 +15,6 @@ module.exports = async function(fastify, opts) {
 
 ********************************************************************************
 `;
-
         return content;
 
     });

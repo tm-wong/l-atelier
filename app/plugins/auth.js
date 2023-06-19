@@ -9,7 +9,7 @@ const fp = require('fastify-plugin');
 
 /**
  * Ce plugin permet d'authentifier le token
- * assé dans le header `Authorization`
+ * passé dans le header `Authorization`
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = fp(async function(fastify, opts) {
@@ -39,7 +39,7 @@ module.exports = fp(async function(fastify, opts) {
 
             // Récupérer le certificat
 
-            const cert = fs.readFileSync(path.resolve(process.env.CERTIFICATE));
+            const cert = fs.readFileSync(path.join(__dirname, '../', process.env.CERTIFICATE));
 
             // Retourner le token vérifié
             return await verify(token, cert);
