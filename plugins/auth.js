@@ -1,53 +1,62 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const util = require('util');
 const jwt = require('jsonwebtoken');
 const fp = require('fastify-plugin');
 
 
+/**
+ * Ce plugin permet d'authentifier le token
+ * assé dans le header `Authorization`
+ */
 // eslint-disable-next-line no-unused-vars
 module.exports = fp(async function(fastify, opts) {
 
+    // 27,33,38,48,56-57
     fastify.decorate('auth', async(request /* , reply */) => {
+
         // Set up
         const { log, httpErrors } = fastify;
         const verify = util.promisify(jwt.verify);
 
         try {
 
-            // Extract authorization header
+            // Extraction du header authorization
             const { authorization } = request.headers;
             if (!authorization) {
                 throw httpErrors.unauthorized();
             }
 
-            // Extract token
+            // Extraction du token
             const token = authorization.replace(/Bearer\s{1}/, '');
-            if (!token) {
-                throw httpErrors.unauthorized();
-            }
 
-            // Check token format
+            // Vérification du format du token
             if (!/^[\w|.|-]{768}$/.test(token)) {
                 throw httpErrors.badRequest();
             }
 
-            // Get certificate
-            const cert = fs.readFileSync(process.env.CERTIFICATE);
+            // Récupérer le certificat
 
-            // Verify token
-            const decoded = await verify(token, cert);
-            if (!decoded) {
+            const cert = fs.readFileSync(path.resolve(process.env.CERTIFICATE));
+
+            // Retourner le token vérifié
+            return await verify(token, cert);
+
+        } catch(err) {
+
+            // log avant de relayer l'erreur
+            log.error(err);
+
+            // Erreur spécifique de la vérification du token
+            if (err.message === 'invalid token') {
                 throw httpErrors.forbidden();
             }
 
-            return true;
-
-        } catch(err) {
-            // log before realying error
-            log.error(err);
+            // Toute autre erreur
             throw err;
+
         }
     });
 });

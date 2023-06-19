@@ -4,24 +4,25 @@ const { test } = require('tap');
 const { build } = require('../helper');
 
 test('default root route', async(t) => {
+
+    console.log('relies with text/plain content');
+
     const app = await build(t);
 
     const res = await app.inject({
         url: '/'
     });
-    t.same(JSON.parse(res.payload), { root: true });
-});
 
-// inject callback style:
-//
-// test('default root route', (t) => {
-//   t.plan(2)
-//   const app = await build(t)
-//
-//   app.inject({
-//     url: '/'
-//   }, (err, res) => {
-//     t.error(err)
-//     t.same(JSON.parse(res.payload), { root: true })
-//   })
-// })
+    const content = `
+
+********************************************************************************
+
+    Tennis Players API - REST
+
+    T. M. Wong - genaddress@gmail.com - T. 06 80 28 99 55 / L'atelier
+
+********************************************************************************
+`;
+
+    t.same(res.payload, content);
+});

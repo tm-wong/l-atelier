@@ -4,21 +4,20 @@
 module.exports = async function(fastify, opts) {
 
     fastify.get('/', async function(request, reply) {
+
         reply.type('text/plain');
-        const textArt = `
+        const content = `
 
 ********************************************************************************
 
-    Player API - REST
-
+    Tennis Players API - REST
 
     T. M. Wong - genaddress@gmail.com - T. 06 80 28 99 55 / L'atelier
 
 ********************************************************************************
-
 `;
 
-        return textArt;
+        return content;
 
     });
 };

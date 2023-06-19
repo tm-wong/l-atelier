@@ -2,6 +2,7 @@
 
 const fp = require('fastify-plugin');
 
+
 /**
  * This plugins adds some utilities to handle http errors
  *

@@ -1,9 +1,9 @@
 {
-  "name": "Bimediatv Rest API",
-  "version": "3.6.0",
-  "description": "Advertising Bimediatv API",
-  "title": "Bimediatv Rest API",
-  "url" : "https://api.bimediatv.com",
+  "name": "Player Rest API",
+  "version": "0.0.1",
+  "description": "This API allows the client user to extract various key point indicaters on a list of tennis players",
+  "title": "Player Rest API",
+  "url" : "http://vast-hamlet-90006-89b9091b2776.herokuapp.com",
   "template" : {
     "withCompare" : true
   }

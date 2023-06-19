@@ -35,8 +35,7 @@ module.exports = async function(fastify, opts) {
         options: Object.assign({}, opts)
     });
 
-    fastify.setNotFoundHandler((request, reply) => {
-        reply.status(404);
-        return 'Not Found\n';
+    fastify.setErrorHandler((err, request, reply) => {
+        return reply.status(err.status).send({ status: err.status, message: err.message });
     });
 };
