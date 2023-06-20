@@ -61,4 +61,5 @@ profile*
 node_modules
 .nyc_output
 database/postgres-data
+apidoc
 
