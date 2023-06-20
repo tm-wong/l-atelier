@@ -8,6 +8,29 @@ const fp = require('fastify-plugin');
 
 
 /**
+ * Cette fonction permet de décoder le token
+ * Elle est détachée du fil principal d'exécution
+ * de façon à traiter les erreurs éventuelles
+ * et liées à la vérification de façon spécifique
+ * (badRequestError) tout en évitant des tests
+ * sur le type d'erreur qui encombreraient
+ * la lecture du code et de façon à le rendre plus clair 
+ */
+const tokenVerify = async(token, cert, fastify) => {
+    const verify = util.promisify(jwt.verify);
+    const { log, httpErrors } = fastify;
+
+    try {
+        return await verify(token, cert);
+    } catch(err) {
+        // badRequestError
+        // log avant de relayer l'erreur
+        log.error(err);
+        throw httpErrors.badRequest(err.message);
+    }
+};
+
+/**
  * Ce plugin permet d'authentifier le token
  * passé dans le header `Authorization`
  */
@@ -18,7 +41,6 @@ module.exports = fp(async function(fastify, opts) {
 
         // Set up
         const { log, httpErrors } = fastify;
-        const verify = util.promisify(jwt.verify);
 
         try {
 
@@ -40,21 +62,12 @@ module.exports = fp(async function(fastify, opts) {
             const cert = fs.readFileSync(path.join(__dirname, '../', process.env.CERTIFICATE));
 
             // Retourner le token vérifié
-            return await verify(token, cert);
+            return await tokenVerify(token, cert, fastify);
 
         } catch(err) {
-
             // log avant de relayer l'erreur
             log.error(err);
-
-            // Erreur spécifique de la vérification du token
-            if (err.message === 'invalid token') {
-                throw httpErrors.forbidden();
-            }
-
-            // Toute autre erreur
             throw err;
-
         }
     });
 });
