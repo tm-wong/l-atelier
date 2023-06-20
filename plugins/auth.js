@@ -37,7 +37,6 @@ module.exports = fp(async function(fastify, opts) {
             }
 
             // Récupérer le certificat
-
             const cert = fs.readFileSync(path.join(__dirname, '../', process.env.CERTIFICATE));
 
             // Retourner le token vérifié
