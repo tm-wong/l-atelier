@@ -1,4 +1,4 @@
-# *****************************************************
+# ********************************************************************************
 
 #     _Tennis Players - REST API_
 # 
@@ -6,7 +6,7 @@
 ####     Evaluation technique pour L'Atelier
 ####     Juin 2023
 # 
-# *****************************************************
+# ********************************************************************************
 Cette application est construite avec Fastify en node.js (v18.15.0) et PostgreSQL (v15.x)
 - https://www.fastify.io
 - https://www.postgresql.org
@@ -27,6 +27,7 @@ git clone git@github.com:tm-wong/l-atelier.git
 cd l-atelier
 docker-compose up --build
 ```
+
 ---
 ## Test du service
 ```sh
@@ -43,13 +44,15 @@ curl -i 0.0.0.0:3000/health
 > 
 > {"status":"OK"}
 ```
+
 ---
 ## Tests de l'application
 ```sh
 docker exec -it app npm test
 ```
-Un bon nombre d'indicateurs appraisent en rouge, la couverture de test n'atteignant pas les 100%
-La couverture de test est cependant honorable, aux allentours de 75 à 80 pourcents
+
+Un bon nombre d'indicateurs appraissent en rouge, la couverture de test n'atteignant pas les 100%. La couverture de test est cependant honorable, aux allentours de 75 à 80 %.
+
 ---
 ## Récupération d'un token d'accès
 ```sh
@@ -70,6 +73,7 @@ https://dev-y1z3acypuoplop6h.us.auth0.com/oauth/token
 >     "token_type": "Bearer"
 > }
 ```
+
 ---
 ## Utilisation du token
 ```sh
@@ -82,6 +86,7 @@ https://vast-hamlet-90006-89b9091b2776.herokuapp.com/api/players
 ---
 ## Documentation de l'API
 Une documentation sur les routes implémentées sur cette API est consultable à partir de l'URL suivante :
+
 _https://vast-hamlet-90006-89b9091b2776.herokuapp.com/doc_
 
 Celle-ci liste chacune des routes avec des exemples d'utilisation.
