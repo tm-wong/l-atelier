@@ -20,7 +20,30 @@ Elle est déployée sur un node Heroku
 La base URL de cette application est la suivante :
 - https://vast-hamlet-90006-89b9091b2776.herokuapp.com
 
+
 ---
+
+## Documentation de l'API
+Une documentation sur les routes implémentées sur cette API est consultable à partir de l'URL suivante :
+
+_https://vast-hamlet-90006-89b9091b2776.herokuapp.com/doc_
+
+Celle-ci liste chacune des routes avec des exemples d'utilisation.
+
+---
+## Au sujet des routes
+Je crois bien avoir compris que l'exercice qui consiste à citer, entre autre, le pays avec le plus grand ratio de parties gagnées n'adresse pas une demande de somme mais plutôt de ratio, c'est à dire de moyenne par joueur par pays.
+Merci de bien vouloir confirmer.
+
+###### Pour toute question ou besoin de précision, n'hésitez pas à prendre contact. Merci encore.
+
+---
+## Tests HTTP
+Une collection de tests réalisés avec Postman (https://www.postman.com) est disponible et devrait vous être partagée apr email.
+Toutefois, un export JSON de cette même collection est présent dans le répertoire _/test/postman-collection/postman.json_ de ce dépôt.
+
+---
+
 ## Installation
 ```sh
 mkdir postgres-data
@@ -56,6 +79,12 @@ Un bon nombre d'indicateurs appraissent en rouge, la couverture de test n'atteig
 
 ---
 ## Récupération d'un token d'accès
+##### _*ATTENTION :  la re-génération du token rendra le token pécédent caduque.*_
+
+Il conviendra donc de remplacer le nouveau token dans tous les tests, qu'il s'agissent des tests avec _tap (docker exec -it app npm test)_ dont il est question juste au-dessus ou bien des tests réalisés avec Postman, également au-dessus. 
+
+Le token configuré actuellement est valable pour une période de 8 semaines.
+
 ```sh
 curl -i -X POST \
 -H 'Content-Type: application/json' \
@@ -83,21 +112,53 @@ export TOKEN='eyJhbGc............'
 curl -i \
 -H "Authorization: Bearer $TOKEN" \
 https://vast-hamlet-90006-89b9091b2776.herokuapp.com/api/players
+
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+Vary: Origin
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 1871
+Date: Tue, 20 Jun 2023 17:35:28 GMT
+Via: 1.1 vegur
+
+[
+    {
+        "id": 17,
+        "player": {
+            "id": 17,
+            "sex": "M",
+            "data": {
+                "age": 33,
+                "last": [1, 0, 0, 0, 1 ],
+                "rank": 1,
+                "height": 185,
+                "points": 1982,
+                "weight": 85000
+            },
+            "country": {
+                "code": "ESP",
+                "picture": "https://data.latelier.co/training/tennis_stats/resources/Espagne.png"
+            },
+            "picture": "https://data.latelier.co/training/tennis_stats/resources/Nadal.png",
+            "lastname": "Nadal",
+            "firstname": "Rafael",
+            "shortname": "R.NAD"
+        }
+    },
+    {
+        "id": 52,
+        "player": {
+            "id": 52,
+            "sex": "M",
+            "data": {
+ ...
+ ...
+ ...
+ 
 ```
----
-## Documentation de l'API
-Une documentation sur les routes implémentées sur cette API est consultable à partir de l'URL suivante :
 
-_https://vast-hamlet-90006-89b9091b2776.herokuapp.com/doc_
-
-Celle-ci liste chacune des routes avec des exemples d'utilisation.
-
----
-## Au sujet des routes
-Je crois bien avoir compris que l'exercice qui consiste à citer, entre autre, le pays avec le plus grand ratio de parties gagnées n'adresse pas une demande de somme mais plutôt de ratio, c'est à dire de moyenne par joueur par pays.
-Merci de bien vouloir confirmer.
-
-###### Pour toute question ou besoin de précision, n'hésitez pas à prendre contact. Merci encore.
 
 
 .
