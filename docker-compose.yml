@@ -29,6 +29,6 @@ services:
       POSTGRES_DB: 'db_players'
     volumes: 
       # create data volume
-      - ./database/postgres-data/data:/var/lib/postgresql/data
+      - ../postgres-data/data:/var/lib/postgresql/data
       # copy the sql script to create tables
       - ./database/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql

@@ -1,10 +1,9 @@
 {
   "name": "Player Rest API",
   "version": "0.0.1",
-  "description": "This API allows the client user to extract various key point indicaters on a list of tennis players",
-  "title": "Player Rest API",
-  "url" : "http://vast-hamlet-90006-89b9091b2776.herokuapp.com",
-  "template" : {
-    "withCompare" : true
+  "description": "Cette API permet de consulter divers indicateurs sur une liste de joueurs de tennis",
+  "apidoc": {
+    "title": "Player Rest API",
+    "url" : "https://vast-hamlet-90006-89b9091b2776.herokuapp.com"
   }
 }

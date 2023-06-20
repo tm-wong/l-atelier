@@ -55,6 +55,9 @@ module.exports = fp(async function(fastify, opts) {
 
             } catch (err) {
                 // Traitement des erreurs
+                log.error('Error: database query failed');
+                log.error('SQL: ' + sql);
+                log.error('PARAMS ' + JSON.stringify(params));
                 log.error(err);
                 throw err;
             }

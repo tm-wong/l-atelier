@@ -8,9 +8,13 @@ WORKDIR /usr/src/app
 COPY package*.json ./ 
 RUN npm install 
 
+
 # Bundle app source 
 COPY . . 
 
+# generate apidoc
+RUN npm run apidoc 
+
 # Expose the port that the express are running 
 EXPOSE 3000 
-CMD [ "npm", "run","start" ]
+CMD [ "npm", "run", "start" ]

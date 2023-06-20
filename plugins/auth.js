@@ -14,7 +14,6 @@ const fp = require('fastify-plugin');
 // eslint-disable-next-line no-unused-vars
 module.exports = fp(async function(fastify, opts) {
 
-    // 27,33,38,48,56-57
     fastify.decorate('auth', async(request /* , reply */) => {
 
         // Set up
@@ -33,7 +32,7 @@ module.exports = fp(async function(fastify, opts) {
             const token = authorization.replace(/Bearer\s{1}/, '');
 
             // Vérification du format du token
-            if (!/^[\w|.|-]{768}$/.test(token)) {
+            if (!/^[\w.-]{768}$/.test(token)) {
                 throw httpErrors.badRequest();
             }
 

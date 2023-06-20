@@ -5,8 +5,6 @@ const { build } = require('../helper');
 
 test('default root route', async(t) => {
 
-    console.log('relies with text/plain content');
-
     const app = await build(t);
 
     const res = await app.inject({
@@ -16,9 +14,13 @@ test('default root route', async(t) => {
     const content = `
 ********************************************************************************
 
-    Tennis Players API - REST
+    Tennis Players - REST API
 
-    T. M. Wong - genaddress@gmail.com - T. 06 80 28 99 55 / L'atelier
+    T. M. Wong - genaddress@gmail.com - T. 06 80 28 99 55
+
+    Evaluation technique pour L'Atelier
+    
+    Juin 2023
 
 ********************************************************************************
 `;
