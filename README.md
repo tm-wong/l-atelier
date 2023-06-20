@@ -39,8 +39,12 @@ Merci de bien vouloir confirmer.
 
 ---
 ## Tests HTTP
-Une collection de tests réalisés avec Postman (https://www.postman.com) est disponible et devrait vous être partagée apr email.
+Une collection de tests réalisés avec Postman (https://www.postman.com) est disponible et devrait vous être partagée par email.
 Toutefois, un export JSON de cette même collection est présent dans le répertoire _/test/postman-collection/postman.json_ de ce dépôt.
+
+Cest tests font autant la démonstration des situations qui fonctionnent que de celles présentant une erreur, ce pour s'assurer que la gestion d'erreur fonctionne correctement.
+
+En outre, la route _/api/health_ permet de s'assurer que le service est fonctionnel et que l'accès ainsi que la lecture en base de données ne présentent aucune anomalie.
 
 ---
 
