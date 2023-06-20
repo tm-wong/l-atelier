@@ -161,7 +161,7 @@ module.exports = async function(fastify, opts) {
      *      -H 'Accept: applicatoion/json' \
      *      -d '{
      *        "client_id": "CZU7lzTAUmg5MGjr8QyPQJbHBuXsTUym",
-     *        "client_secret": "Q0Hmu0y6QHM4uy2HZr4gPl6bEoH78RG3HxBbic2gbjauM8LrQI767dejQXqbm8So",
+     *        "client_secret": "xXxXx",
      *        "audience": "https://dev-y1z3acypuoplop6h.us.auth0.com/api/v2/",
      *        "grant_type": "client_credentials"
      *      }' \
