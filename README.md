@@ -1,4 +1,4 @@
-# ********************************************************************************
+# **************************************************************
 
 #     _Tennis Players - REST API_
 # 
@@ -6,7 +6,7 @@
 ####     Evaluation technique pour L'Atelier
 ####     Juin 2023
 # 
-# ********************************************************************************
+# **************************************************************
 Cette application est construite avec Fastify en node.js (v18.15.0) et PostgreSQL (v15.x)
 - https://www.fastify.io
 - https://www.postgresql.org
