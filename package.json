@@ -43,6 +43,7 @@
     "fastify-cli": "^5.7.1",
     "fastify-plugin": "^4.0.0",
     "jsonwebtoken": "^9.0.0",
+    "log4js": "^6.9.1",
     "pg": "^8.11.0"
   },
   "devDependencies": {

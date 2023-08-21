@@ -2,9 +2,7 @@
 
 #     _Tennis Players - REST API_
 # 
-###     T. M. Wong - genaddress@gmail.com - T. 06 80 28 99 55
-####     Evaluation technique pour L'Atelier
-####     Juin 2023
+###     T. M. Wong - Juin 2023
 # 
 ###### ****************************************************************
 
