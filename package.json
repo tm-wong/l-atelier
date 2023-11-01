@@ -2,15 +2,16 @@
   "name": "l-atelier",
   "version": "1.0.0",
   "description": "L'atelier evaluation tmwong",
-  "main": "app.js",
+  "main": "src/server.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "build": "tsc -w",
+    "dev": "nodemon build/server.js",
+    "start": "node build/server.js",
     "test": "tap \"test/**/*.test.js\"",
     "test:watch": "tap --watch \"test/**/*.test.js\"",
-    "start": "node server.js",
-    "dev": "fastify start -w -l info -P app.js",
     "apidoc": "npx apidoc --debug -i 'routes/' -f '(index|root).js' -o apidoc"
   },
   "repository": {
@@ -18,7 +19,7 @@
     "url": "git+ssh://git@github.com/tm-wong/l-atelier.git"
   },
   "engines": {
-    "npm": "9.x",
+    "npm": "10.x",
     "node": "18.x"
   },
   "keywords": [
@@ -33,25 +34,29 @@
   },
   "homepage": "https://github.com/tm-wong/l-atelier#readme",
   "dependencies": {
-    "@fastify/autoload": "^5.0.0",
-    "@fastify/cors": "^8.3.0",
+    "@fastify/autoload": "^5.8.0",
+    "@fastify/cors": "^8.4.1",
     "@fastify/middie": "^8.3.0",
-    "@fastify/sensible": "^5.0.0",
+    "@fastify/sensible": "^5.5.0",
     "@fastify/static": "^6.10.2",
+    "close-with-grace": "^1.2.0",
     "dotenv": "^16.3.1",
-    "fastify": "^4.0.0",
-    "fastify-cli": "^5.7.1",
+    "fastify": "^4.24.3",
+    "fastify-cli": "^5.8.0",
     "fastify-plugin": "^4.0.0",
-    "jsonwebtoken": "^9.0.0",
+    "jsonwebtoken": "^9.0.2",
     "log4js": "^6.9.1",
-    "pg": "^8.11.0"
+    "pg": "^8.11.3"
   },
   "devDependencies": {
-    "apidoc": "^1.0.3",
-    "eslint": "^8.43.0",
-    "http-server": "^14.1.1",
-    "i": "^0.3.7",
-    "npm": "^9.7.1",
-    "tap": "^16.1.0"
+    "@types/node": "^20.8.10",
+    "@types/pino": "^7.0.5",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "apidoc": "^1.2.0",
+    "eslint": "^8.52.0",
+    "nodemon": "^3.0.1",
+    "tap": "^18.5.4",
+    "typescript": "^5.2.2"
   }
 }

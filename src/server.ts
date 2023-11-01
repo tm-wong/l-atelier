@@ -1,0 +1,54 @@
+/**
+ * server.ts
+ */
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+import { fastify } from 'fastify';
+import pino from 'pino';
+import closeWithGrace from 'close-with-grace';
+
+const PORT: number = parseInt(<string>process.env.PORT, 10) || 7000;
+
+const server = fastify({
+	logger: pino({ level: 'debug' })
+});
+
+
+// Register your application
+// as a normal plugin.
+import app from './app';
+server.register(app);
+
+
+// delay is the number of milliseconds
+// for the graceful close to finish
+const closeListeners = closeWithGrace({
+	delay: parseInt(<string>process.env.FASTIFY_CLOSE_GRACE_DELAY, 10) || 500
+	// eslint-disable-next-line no-unused-vars
+}, async function({ signal, err, manual }) {
+    if (err) {
+        server.log.error(err);
+    }
+    await server.close();
+});
+
+// close event
+server.addHook('onClose', (instance, done) => {
+    closeListeners.uninstall();
+    done();
+});
+
+// start listening
+server.listen({
+	port: PORT,
+	host: process.env.HOST
+}, err => {
+    if (err) {
+        server.log.error(err);
+        // eslint-disable-next-line no-process-exit
+        process.exit(1);
+    }
+    console.log(`server listening on port: ${ PORT }`)
+});
