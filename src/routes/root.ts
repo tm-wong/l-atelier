@@ -3,25 +3,31 @@
  */
 
 import {
-	FastifyInstance,
-	FastifyPluginOptions,
-	FastifyPluginAsync
+    FastifyInstance,
+    FastifyPluginOptions,
+    FastifyPluginAsync
 } from 'fastify';
 
 
 const RootRoutes: FastifyPluginAsync = async(
-	server: FastifyInstance,
-	// eslint-disable-next-line no-unused-vars
-	opts: FastifyPluginOptions
+    fastify: FastifyInstance,
+    // eslint-disable-next-line no-unused-vars
+    opts: FastifyPluginOptions
 ) => {
-	server.get('/', {}, (request, reply) => {
-		try {
-			return reply.status(200).send({ message: 'Ok' });
-		} catch(err) {
-			request.log.error(err);
-			return reply.status(500);
-		}
-	});
-}
+
+    /* eslint-disable no-console */
+    console.log('=== environment in fastify', 'environment' in fastify);
+    console.log('=== fastify.environment()', fastify.environment());
+    /* eslint-enable no-console */
+
+    fastify.get('/', {}, (request, reply) => {
+        try {
+            return reply.status(200).send({ message: 'Ok' });
+        } catch(err) {
+            request.log.error(err);
+            return reply.status(500);
+        }
+    });
+};
 
 export default RootRoutes;

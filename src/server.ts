@@ -10,9 +10,10 @@ import pino from 'pino';
 import closeWithGrace from 'close-with-grace';
 
 const PORT: number = parseInt(<string>process.env.PORT, 10) || 7000;
+const HOST = process.env.HOST || '127.0.0.1';
 
 const server = fastify({
-	logger: pino({ level: 'debug' })
+    logger: pino({ level: 'debug' })
 });
 
 
@@ -25,8 +26,8 @@ server.register(app);
 // delay is the number of milliseconds
 // for the graceful close to finish
 const closeListeners = closeWithGrace({
-	delay: parseInt(<string>process.env.FASTIFY_CLOSE_GRACE_DELAY, 10) || 500
-	// eslint-disable-next-line no-unused-vars
+    delay: parseInt(<string>process.env.FASTIFY_CLOSE_GRACE_DELAY, 10) || 500
+    // eslint-disable-next-line no-unused-vars
 }, async function({ signal, err, manual }) {
     if (err) {
         server.log.error(err);
@@ -42,13 +43,14 @@ server.addHook('onClose', (instance, done) => {
 
 // start listening
 server.listen({
-	port: PORT,
-	host: process.env.HOST
+    port: PORT,
+    host: HOST
 }, err => {
     if (err) {
         server.log.error(err);
         // eslint-disable-next-line no-process-exit
         process.exit(1);
     }
-    console.log(`server listening on port: ${ PORT }`)
+    // eslint-disable-next-line no-console
+    console.log(`server listening on port: ${ PORT }`);
 });

@@ -3,24 +3,29 @@
  */
 
 import path from 'path';
-import autoLoad from '@fastify/autoload';
 import cors from '@fastify/cors';
+import autoLoad from '@fastify/autoload';
+import Environment from './plugins/Environment';
 
 import {
     FastifyInstance,
     FastifyPluginOptions
 } from 'fastify';
 
-const env = process.env.NODE_ENV || 'prod';
+// const env = process.env.NODE_ENV || 'production';
+// console.log('=== env', env);
 
 export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
 
     // Place here your custom code!
 
+    // debug env
+    // eslint-disable-next-line no-console
+    // console.log('=== Environment', Environment);
 
     // Chargement du middleware plugin
     // await fastify.register(require('@fastify/middie'))
-    
+
     // CORS
     await fastify.register(cors, {
         origin: '*',
@@ -28,7 +33,7 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
         allowedHeaders: ['Accept', 'Content-Type', 'Authorization']
     });
 
-    // Service de fichiers statiques 
+    // Service de fichiers statiques
     // de façon à rendre la documentation accessible
     // fastify.register(require('@fastify/static'), {
     //     root: path.join(__dirname, 'apidoc')
@@ -59,18 +64,19 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
     fastify.setErrorHandler((err, request, reply) => {
 
         const statusCode = err.statusCode || 500;
+        const env = fastify.environment();
 
         // si l'environnement est autre que celui de développement
         // et que l'erreur est de type 500,
         // le message d'erreur est opacifié => InternalServerError
         // de façon à ne pas laisser transparaître
-        // une éventuelle faille de sécurité 
+        // une éventuelle faille de sécurité
         const message = env !== 'dev' &&
-            statusCode === 500 && 
+            statusCode === 500 &&
             'Internal Server Error' ||
             err.message;
 
         // output de l'erreur
         return reply.status(statusCode).send({ statusCode, message });
     });
-}
+};
