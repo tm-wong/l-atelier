@@ -7,6 +7,7 @@
 import fp from 'fastify-plugin';
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 
+// import Log from '../Logger';
 
 export default fp(async(
     fastify: FastifyInstance,

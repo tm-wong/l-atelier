@@ -5,26 +5,16 @@
 import path from 'path';
 import cors from '@fastify/cors';
 import autoLoad from '@fastify/autoload';
-import Environment from './plugins/Environment';
 
 import {
     FastifyInstance,
     FastifyPluginOptions
 } from 'fastify';
 
-// const env = process.env.NODE_ENV || 'production';
-// console.log('=== env', env);
 
 export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
 
     // Place here your custom code!
-
-    // debug env
-    // eslint-disable-next-line no-console
-    // console.log('=== Environment', Environment);
-
-    // Chargement du middleware plugin
-    // await fastify.register(require('@fastify/middie'))
 
     // CORS
     await fastify.register(cors, {
@@ -33,17 +23,11 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
         allowedHeaders: ['Accept', 'Content-Type', 'Authorization']
     });
 
-    // Service de fichiers statiques
-    // de façon à rendre la documentation accessible
-    // fastify.register(require('@fastify/static'), {
-    //     root: path.join(__dirname, 'apidoc')
-    // });
-
 
     // Autoload par défaut de fastify
 
-    // Do not touch the following lines
 
+    // Do not touch the following lines
 
     // This loads all plugins defined in plugins
     // those should be support plugins that are reused
@@ -57,8 +41,10 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
     // define your routes in one of these
     fastify.register(autoLoad, {
         dir: path.join(__dirname, 'routes'),
+        // maxDepth: 5,
         options: Object.assign({}, opts)
     });
+
 
     // Gestion des erreurs dans la réponse HTTP
     fastify.setErrorHandler((err, request, reply) => {

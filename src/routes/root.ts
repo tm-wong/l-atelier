@@ -28,6 +28,15 @@ const RootRoutes: FastifyPluginAsync = async(
             return reply.status(500);
         }
     });
+
+    fastify.get('/xxx', {}, (request, reply) => {
+        try {
+            return reply.status(200).send({ message: 'Ok' });
+        } catch(err) {
+            request.log.error(err);
+            return reply.status(500);
+        }
+    });
 };
 
 export default RootRoutes;

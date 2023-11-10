@@ -3,7 +3,7 @@
  */
 
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ path: `.env.${ process.env.NODE_ENV }` });
 
 import { fastify } from 'fastify';
 import pino from 'pino';

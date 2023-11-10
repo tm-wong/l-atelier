@@ -9,6 +9,8 @@ export interface environment {
 declare module 'fastify' {
   // eslint-disable-next-line no-unused-vars
   interface FastifyInstance {
-    environment: environment
+    environment: environment,
+    appLog: appLog,
+    dbClient: dbClient
   }
 }
