@@ -5,7 +5,7 @@
 import path from 'path';
 import cors from '@fastify/cors';
 import autoLoad from '@fastify/autoload';
-import { E_STANDARD } from './errors';
+import { E_STANDARD } from './common/errors';
 import getLogger from './common/log';
 
 // eslint-disable-next-line no-unused-vars

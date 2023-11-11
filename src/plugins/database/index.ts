@@ -9,7 +9,7 @@ import getLogger from '../../common/log';
 import {
     E_DATABASE_CONNEXION,
     E_DATABASE_QUERY
-} from '../../errors';
+} from '../../common/errors';
 
 import {
     FastifyInstance,
@@ -65,7 +65,7 @@ export default fp(async(
     fastify.decorate('dbClient', () => {
 
         // database query wrapper
-        const query = async(sql: string, params = []) => {
+        const query = async(sql: string, params: any = []) => {
 
             try {
                 // connexion
@@ -93,8 +93,8 @@ export default fp(async(
 
             } catch (err) {
                 log.error(err);
-                if (!err instanceof E_DATABASE_CONNEXION)
-                    throw E_DATABASE_QUERY(null, sql, params);
+                if (!err as any instanceof E_DATABASE_CONNEXION)
+                    throw new E_DATABASE_QUERY(null, sql, params);
                 throw err;
             }
         };
