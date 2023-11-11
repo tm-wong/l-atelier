@@ -8,7 +8,7 @@ import getLogger from '../../common/log';
 
 import {
     E_DATABASE_CONNEXION,
-    E_DATABASE_QUERY    
+    E_DATABASE_QUERY
 } from '../../errors';
 
 import {
@@ -46,14 +46,8 @@ const connect = async(): Promise<{
     client?: PoolClient;
     err?: Error | unknown;
 }> => {
-
-    try {
-        const client: PoolClient = await pool.connect();
-        return { client };
-    } catch(err) {
-        throw err;
-    }
-
+    const client: PoolClient = await pool.connect();
+    return { client };
 };
 
 
@@ -75,7 +69,7 @@ export default fp(async(
 
             try {
                 // connexion
-                const { client, err } = await connect();
+                const { client } = await connect();
 
                 // connexion check
                 if (!client) {
@@ -98,6 +92,9 @@ export default fp(async(
                 return content;
 
             } catch (err) {
+                log.error(err);
+                if (!err instanceof E_DATABASE_CONNEXION)
+                    throw E_DATABASE_QUERY(null, sql, params);
                 throw err;
             }
         };

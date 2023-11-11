@@ -84,6 +84,6 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
         }
 
         // 3.2 - else status code 500 is sent
-        throw httpErrors.serviceUnavailable();
+        throw httpErrors.serviceUnavailable(message);
     });
 };

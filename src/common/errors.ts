@@ -42,7 +42,7 @@ export class E_UNAUTHORIZED extends E_STANDARD {
         const msg = 'UNAUTHORIZED ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 401
+        this.status = 401;
         this.out = 'Unauthorized';
     }
 }
@@ -119,7 +119,7 @@ export class E_DATABASE_QUERY extends E_STANDARD {
     constructor(
         message: string | null = '',
         sql: string | null = null,
-        params: [] | null = [],
+        params: [] | null = []
     ) {
         const msg = 'DATABASE QUERY ERROR ' + (message ??= '');
         super(msg);
