@@ -39,8 +39,7 @@ const HealthRoutes: FastifyPluginAsync = async(
             return { status: 'OK' };
 
         } catch(err) {
-            log.error(err);
-            return reply.status(500);
+            throw err;
         }
     });
 }

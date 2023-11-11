@@ -13,7 +13,8 @@ const PORT: number = parseInt(<string>process.env.PORT, 10) || 7000;
 const HOST = process.env.HOST || '127.0.0.1';
 
 const server = fastify({
-    logger: pino({ level: 'debug' })
+    logger: pino({ level: 'debug' }),
+    pluginTimeout: 3000
 });
 
 
