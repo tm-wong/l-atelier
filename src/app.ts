@@ -5,11 +5,8 @@
 import path from 'path';
 import cors from '@fastify/cors';
 import autoLoad from '@fastify/autoload';
-import { E_STANDARD } from './common/errors';
+import { E_ } from './common/errors';
 import getLogger from './common/log';
-
-// eslint-disable-next-line no-unused-vars
-import sensible from '@fastify/sensible';
 
 import {
     FastifyInstance,
@@ -51,12 +48,11 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
     });
 
 
-    // set up for main script 'app.ts'
-    // for error management in  HTTP responses
-
-    const { httpErrors } = fastify;
-
     fastify.setErrorHandler((err, request, reply) => {
+
+        // set up for main script 'app.ts'
+        // for error management in  HTTP responses
+        const { httpErrors } = fastify;
 
         // 1 - log errors regardless of error type
         log.error(err);
@@ -78,9 +74,13 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
         // only visible in logs
 
         // 3.1 - check if error is know error
-        if (err instanceof E_STANDARD) {
+        if (err instanceof E_.STANDARD) {
             const { out = 'Service Unavailable' }: { out: string } = err;
             throw httpErrors.createError(statusCode, out);
+        }
+
+        else if (/^4\d{2}$/.test('' + statusCode)) {
+            throw httpErrors.createError(statusCode, message);
         }
 
         // 3.2 - else status code 500 is sent

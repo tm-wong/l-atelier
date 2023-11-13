@@ -2,6 +2,7 @@
  * config
  */
 
+// logger config
 export const logger = {
     appenders: {
         console: {

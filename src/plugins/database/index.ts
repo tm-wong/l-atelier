@@ -6,20 +6,11 @@
 import fp from 'fastify-plugin';
 import getLogger from '../../common/log';
 
-import {
-    E_DATABASE_CONNEXION,
-    E_DATABASE_QUERY
-} from '../../common/errors';
-
-import {
-    FastifyInstance,
-    FastifyPluginOptions
-} from 'fastify';
+import { E_ } from '../../common/errors';
 
 import {
     PoolConfig,
-    Pool,
-    PoolClient
+    Pool
 } from 'pg';
 
 // log instance
@@ -36,17 +27,13 @@ const opts: PoolConfig = {
     ssl: { rejectUnauthorized: Number(DATABASE_SSL) === 1 && true || false }
 };
 
-
 // pool instance
 const pool: Pool = new Pool(opts);
 
 // database access
 // through connection
-const connect = async(): Promise<{
-    client?: PoolClient;
-    err?: Error | unknown;
-}> => {
-    const client: PoolClient = await pool.connect();
+const connect = async() => {
+    const client = await pool.connect();
     return { client };
 };
 
@@ -57,15 +44,15 @@ const connect = async(): Promise<{
  * and database query wrapper
  */
 export default fp(async(
-    fastify: FastifyInstance,
+    fastify,
     // eslint-disable-next-line no-unused-vars
-    opts: FastifyPluginOptions
+    opts
 ) => {
 
     fastify.decorate('dbClient', () => {
 
         // database query wrapper
-        const query = async(sql: string, params: any = []) => {
+        const query = async(sql: string, params: [] = []) => {
 
             try {
                 // connexion
@@ -73,7 +60,7 @@ export default fp(async(
 
                 // connexion check
                 if (!client) {
-                    throw new E_DATABASE_CONNEXION();
+                    throw new E_.DATABASE_CONNEXION();
                 }
 
                 // query
@@ -93,8 +80,8 @@ export default fp(async(
 
             } catch (err) {
                 log.error(err);
-                if (!err as any instanceof E_DATABASE_CONNEXION)
-                    throw new E_DATABASE_QUERY(null, sql, params);
+                if (!err as unknown instanceof E_.DATABASE_CONNEXION)
+                    throw new E_.DATABASE_QUERY(null, sql, params);
                 throw err;
             }
         };

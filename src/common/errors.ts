@@ -1,8 +1,9 @@
 /**
- * errors.ts
- */
+* errors.ts
+*/
 
-export class E_STANDARD {
+
+export class STANDARD extends Error {
 
     message: string;
     status: number;
@@ -10,13 +11,14 @@ export class E_STANDARD {
 
     constructor(message: string | null = '') {
         const msg = 'STANDARD ERROR ' + (message ??= '');
+        super(msg);
         this.message = msg;
         this.status = 500;
         this.out = 'Service Unavailable';
     }
 }
 
-export class E_BAD_REQUEST extends E_STANDARD {
+export class BAD_REQUEST extends STANDARD {
 
     message: string;
     status: number;
@@ -32,7 +34,7 @@ export class E_BAD_REQUEST extends E_STANDARD {
 }
 
 
-export class E_UNAUTHORIZED extends E_STANDARD {
+export class UNAUTHORIZED extends STANDARD {
 
     message: string;
     status: number;
@@ -47,7 +49,7 @@ export class E_UNAUTHORIZED extends E_STANDARD {
     }
 }
 
-export class E_FORBIDDEN extends E_STANDARD {
+export class FORBIDDEN extends STANDARD {
 
     message: string;
     status: number;
@@ -62,7 +64,7 @@ export class E_FORBIDDEN extends E_STANDARD {
     }
 }
 
-export class E_NOT_FOUND extends E_STANDARD {
+export class NOT_FOUND extends STANDARD {
 
     message: string;
     status: number;
@@ -77,7 +79,7 @@ export class E_NOT_FOUND extends E_STANDARD {
     }
 }
 
-export class E_SERVICE_UNAVAILABLE extends E_STANDARD {
+export class SERVICE_UNAVAILABLE extends STANDARD {
 
     message: string;
     status: number;
@@ -92,7 +94,7 @@ export class E_SERVICE_UNAVAILABLE extends E_STANDARD {
     }
 }
 
-export class E_DATABASE_CONNEXION extends E_STANDARD {
+export class DATABASE_CONNEXION extends STANDARD {
 
     message: string;
     status: number;
@@ -108,7 +110,7 @@ export class E_DATABASE_CONNEXION extends E_STANDARD {
 }
 
 
-export class E_DATABASE_QUERY extends E_STANDARD {
+export class DATABASE_QUERY extends STANDARD {
 
     message: string;
     status: number;
@@ -130,3 +132,15 @@ export class E_DATABASE_QUERY extends E_STANDARD {
         this.params = 'PARAMS:  ' + JSON.stringify(params);
     }
 }
+
+
+export const E_ = {
+    STANDARD,
+    BAD_REQUEST,
+    UNAUTHORIZED,
+    FORBIDDEN,
+    NOT_FOUND,
+    SERVICE_UNAVAILABLE,
+    DATABASE_CONNEXION,
+    DATABASE_QUERY
+};

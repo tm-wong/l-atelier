@@ -2,42 +2,46 @@
  * health.ts
  */
 import assert from 'assert';
-import {
-    FastifyInstance,
-    FastifyPluginOptions,
-    FastifyPluginAsync
-} from 'fastify';
-
+import { FastifyPluginAsync } from 'fastify';
 
 /**
- * Cette route permet de vérifier
- * que les fonctionnalités
- * de base de l'API sont up
+ * this is healthcheck route
+ * 1 - API routing system
+ * 2 - database access
  */
-const HealthRoutes: FastifyPluginAsync = async(
-    fastify: FastifyInstance,
+const healthRoutes: FastifyPluginAsync = async(
+    fastify,
     // eslint-disable-next-line no-unused-vars
-    opts: FastifyPluginOptions
+    opts
 ) => {
+
     // eslint-disable-next-line no-unused-vars
     fastify.get('/', {}, async(request, reply) => {
 
+        let database = 0;
         const log = fastify.appLog('health');
 
-        // Récupération du client du pool de connexion
-        const db = fastify.dbClient();
 
-        // Requête
-        const sql = 'SELECT * FROM test_table';
-        const content = await db.query(sql);
-        log.debug('=== content', content);
+        try {
+            // get client from connexion pool
+            const db = fastify.dbClient();
 
-        // Vérification des résultats
-        assert.strictEqual(content[0]?.name, 'hello database');
+            // actual query
+            const sql = 'SELECT * FROM test_table';
+            const content = await db.query(sql);
+
+            // asserts results
+            assert.strictEqual(content[0]?.name, 'hello database');
+
+            // set status
+            database = 1;
+        } catch(err) {
+            log.error(err);
+        }
 
         // Confirmation du statut
-        return { status: 'OK' };
+        return { status: { router: 1, database } };
     });
 };
 
-export default HealthRoutes;
+export default healthRoutes;

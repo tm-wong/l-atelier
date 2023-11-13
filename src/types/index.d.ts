@@ -11,6 +11,7 @@ declare module 'fastify' {
   interface FastifyInstance {
     environment: environment,
     appLog: appLog,
-    dbClient: dbClient
+    dbClient: dbClient,
+    ApiRoot: ApiRoot
   }
 }

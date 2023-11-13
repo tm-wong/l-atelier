@@ -2,41 +2,53 @@
  * root.ts
  */
 
-import {
-    FastifyInstance,
-    FastifyPluginOptions,
-    FastifyPluginAsync
-} from 'fastify';
+import { FastifyPluginAsync } from 'fastify';
 
-
-const RootRoutes: FastifyPluginAsync = async(
-    fastify: FastifyInstance,
+const rootRoutes: FastifyPluginAsync = async(
+    fastify,
     // eslint-disable-next-line no-unused-vars
-    opts: FastifyPluginOptions
+    opts
 ) => {
 
-    /* eslint-disable no-console */
-    console.log('=== environment in fastify', 'environment' in fastify);
-    console.log('=== fastify.environment()', fastify.environment());
-    /* eslint-enable no-console */
+    const { httpErrors } = fastify;
 
+    // eslint-disable-next-line no-unused-vars
     fastify.get('/', {}, (request, reply) => {
-        try {
-            return reply.status(200).send({ message: 'Ok' });
-        } catch(err) {
-            request.log.error(err);
-            return reply.status(500);
-        }
+
+        const content = `
+********************************************************************************
+
+    Tennis Players - REST API
+
+    T. M. Wong - genaddress@gmail.com - T. 06 80 28 99 55
+
+    Tennis Players REST API to TypeScript 
+
+    November 2023
+
+********************************************************************************
+`;
+        reply.type('text/plain');
+        return content;
     });
 
-    fastify.get('/xxx', {}, (request, reply) => {
-        try {
-            return reply.status(200).send({ message: 'Ok' });
-        } catch(err) {
-            request.log.error(err);
-            return reply.status(500);
-        }
+    // eslint-disable-next-line no-unused-vars
+    fastify.get('/api', async(request, reply) => {
+        throw httpErrors.forbidden();
     });
+
+    /**
+     * Service de fichiers statiques
+     * de façon à rendre la documentation accessible
+     */
+    // fastify.get('/doc', async function(request, reply) {
+
+    //     // set up du MIME type
+    //     reply.type('text/html');
+
+    //     // output du fichier statique
+    //     return reply.sendFile('index.html');
+    // });
 };
 
-export default RootRoutes;
+export default rootRoutes;

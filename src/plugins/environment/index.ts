@@ -3,15 +3,16 @@
  */
 
 import fp from 'fastify-plugin';
-import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 
+/**
+ * this plugin returns environment ( dev | preprod | prod )
+ */
 export default fp(async(
-    fastify: FastifyInstance,
+    fastify,
     // eslint-disable-next-line no-unused-vars
-    options: FastifyPluginOptions
+    opts
 ) => {
     fastify.decorate('environment', () => {
-        const env: string = process.env.NODE_ENV || 'production';
-        return env;
+        return process.env.NODE_ENV || 'prod';
     });
 });
