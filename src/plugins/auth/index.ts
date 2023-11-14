@@ -75,6 +75,7 @@ export default fp(async function(fastify, opts) {
 
         // Authorization header extraction
         const { headers: { authorization } } = request;
+
         if (!authorization) {
             throw new _E_.UNAUTHORIZED();
         }
