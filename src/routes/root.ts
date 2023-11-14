@@ -41,14 +41,14 @@ const rootRoutes: FastifyPluginAsync = async(
      * Service de fichiers statiques
      * de façon à rendre la documentation accessible
      */
-    // fastify.get('/doc', async function(request, reply) {
+    fastify.get('/doc', async function(request, reply) {
 
-    //     // set up du MIME type
-    //     reply.type('text/html');
+        // set up du MIME type
+        reply.type('text/html');
 
-    //     // output du fichier statique
-    //     return reply.sendFile('index.html');
-    // });
+        // output du fichier statique
+        return reply.sendFile('index.html');
+    });
 };
 
 export default rootRoutes;

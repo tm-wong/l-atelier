@@ -5,6 +5,7 @@
 import path from 'path';
 import cors from '@fastify/cors';
 import autoLoad from '@fastify/autoload';
+import fastifyStatic from '@fastify/static';
 import { _E_ } from './common/errors';
 import getLogger from './common/log';
 
@@ -26,6 +27,14 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
         origin: '*',
         methods: ['GET'],
         allowedHeaders: ['Accept', 'Content-Type', 'Authorization']
+    });
+ 
+    log.debug('=== path.join(__dirname, apidoc)', path.join(__dirname, 'apidoc'));
+
+    // Service de fichiers statiques 
+    // de façon à rendre la documentation accessible
+    fastify.register(fastifyStatic, {
+        root: path.join(__dirname, 'apidoc')
     });
 
 
