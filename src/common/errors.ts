@@ -6,14 +6,14 @@
 export class STANDARD extends Error {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
 
     constructor(message: string | null = '') {
         const msg = 'STANDARD ERROR ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 500;
+        this.statusCode = 500;
         this.out = 'Service Unavailable';
     }
 }
@@ -21,14 +21,14 @@ export class STANDARD extends Error {
 export class BAD_REQUEST extends STANDARD {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
 
     constructor(message: string | null = '') {
         const msg = 'BAD REQUEST ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 400;
+        this.statusCode = 400;
         this.out = 'Bad Request';
     }
 }
@@ -37,14 +37,14 @@ export class BAD_REQUEST extends STANDARD {
 export class UNAUTHORIZED extends STANDARD {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
 
     constructor(message: string | null = '') {
         const msg = 'UNAUTHORIZED ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 401;
+        this.statusCode = 401;
         this.out = 'Unauthorized';
     }
 }
@@ -52,14 +52,14 @@ export class UNAUTHORIZED extends STANDARD {
 export class FORBIDDEN extends STANDARD {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
 
     constructor(message: string | null = '') {
         const msg = 'FORBIDDEN ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 403;
+        this.statusCode = 403;
         this.out = 'Forbidden';
     }
 }
@@ -67,14 +67,14 @@ export class FORBIDDEN extends STANDARD {
 export class NOT_FOUND extends STANDARD {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
 
     constructor(message: string | null = '') {
         const msg = 'NOT FOUND ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 404;
+        this.statusCode = 404;
         this.out = 'Not Found';
     }
 }
@@ -82,14 +82,14 @@ export class NOT_FOUND extends STANDARD {
 export class SERVICE_UNAVAILABLE extends STANDARD {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
 
     constructor(message: string | null = '') {
         const msg = 'SERVICE UNAVAILABLE ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 500;
+        this.statusCode = 500;
         this.out = 'Service Unavailable';
     }
 }
@@ -97,14 +97,14 @@ export class SERVICE_UNAVAILABLE extends STANDARD {
 export class DATABASE_CONNEXION extends STANDARD {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
 
     constructor(message: string | null = '') {
         const msg = 'DATABASE CONNEXION ERROR ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 500;
+        this.statusCode = 500;
         this.out = 'Service Unavailable';
     }
 }
@@ -113,7 +113,7 @@ export class DATABASE_CONNEXION extends STANDARD {
 export class DATABASE_QUERY extends STANDARD {
 
     message: string;
-    status: number;
+    statusCode: number;
     out: string;
     sql: string;
     params: string;
@@ -126,7 +126,7 @@ export class DATABASE_QUERY extends STANDARD {
         const msg = 'DATABASE QUERY ERROR ' + (message ??= '');
         super(msg);
         this.message = msg;
-        this.status = 500;
+        this.statusCode = 500;
         this.out = 'Service Unavailable';
         this.sql = 'SQL: ' + sql;
         this.params = 'PARAMS:  ' + JSON.stringify(params);
@@ -134,7 +134,7 @@ export class DATABASE_QUERY extends STANDARD {
 }
 
 
-export const E_ = {
+export const _E_ = {
     STANDARD,
     BAD_REQUEST,
     UNAUTHORIZED,

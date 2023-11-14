@@ -23,6 +23,14 @@ const playersRoutes: FastifyPluginAsync = async(
     const log = appLog('PLAYERS_ROUTES');
     const service = new PlayerService(fastify);
 
+    // auth middleware
+    fastify.addHook('preHandler', async(request, reply) => {
+        const authorized = await fastify.auth(request, reply);
+        if (!authorized) {
+            throw httpErrors.unauthorized();
+        }
+    });
+
     /**
      * @apiDefine BadRequestError
      * @apiError (4xx) BadRequest 400

@@ -5,7 +5,7 @@
 import path from 'path';
 import cors from '@fastify/cors';
 import autoLoad from '@fastify/autoload';
-import { E_ } from './common/errors';
+import { _E_ } from './common/errors';
 import getLogger from './common/log';
 
 import {
@@ -50,14 +50,10 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
 
     fastify.setErrorHandler((err, request, reply) => {
 
-        // set up for main script 'app.ts'
-        // for error management in  HTTP responses
-        const { httpErrors } = fastify;
-
         // 1 - log errors regardless of error type
         log.error(err);
 
-        // 2 - set HTTP Response status code
+        // 2 - extract error essentials
         const {
             statusCode = 500,
             message = 'Service Unavailable'
@@ -66,24 +62,24 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
             message: string;
         } = err;
 
+        // 3 - set HTTP Response status code
         reply.status(statusCode);
 
-        // 3 - regardless of environment,
+
+        // 4 - regardless of environment,
         // 5xx error messages are hidden
         // from HTTP Response and
         // only visible in logs
 
-        // 3.1 - check if error is know error
-        if (err instanceof E_.STANDARD) {
+        // check if error is known error
+        if (err instanceof _E_.STANDARD) {
             const { out = 'Service Unavailable' }: { out: string } = err;
-            throw httpErrors.createError(statusCode, out);
+            return { statusCode, message: out };
         }
 
-        else if (/^4\d{2}$/.test('' + statusCode)) {
-            throw httpErrors.createError(statusCode, message);
-        }
+        // 5 - else, send default or
+        // system statusCode and message
+        return { statusCode, message };
 
-        // 3.2 - else status code 500 is sent
-        throw httpErrors.serviceUnavailable(message);
     });
 };

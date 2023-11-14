@@ -5,7 +5,7 @@
 
 import log4js from 'log4js';
 import { FastifyInstance } from 'fastify';
-import { E_ } from '../common/errors';
+import { _E_ } from '../common/errors';
 import PlayerRepository from '../repository/PlayerRepository';
 
 
@@ -30,7 +30,7 @@ export default class PlayerService {
     async getOne(id: number) {
         const results = await this.repository.getOne(id);
         if (!results.length)
-            throw new E_.NOT_FOUND();
+            throw new _E_.NOT_FOUND();
         return results;
     }
 
@@ -38,7 +38,7 @@ export default class PlayerService {
     async kpis() {
         const results = await this.repository.kpis();
         if (!results.length)
-            throw new E_.NOT_FOUND();
+            throw new _E_.NOT_FOUND();
         return results;
     }
 }

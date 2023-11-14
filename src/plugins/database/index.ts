@@ -6,7 +6,7 @@
 import fp from 'fastify-plugin';
 import getLogger from '../../common/log';
 
-import { E_ } from '../../common/errors';
+import { _E_ } from '../../common/errors';
 
 import {
     PoolConfig,
@@ -60,7 +60,7 @@ export default fp(async(
 
                 // connexion check
                 if (!client) {
-                    throw new E_.DATABASE_CONNEXION();
+                    throw new _E_.DATABASE_CONNEXION();
                 }
 
                 // query
@@ -80,8 +80,8 @@ export default fp(async(
 
             } catch (err) {
                 log.error(err);
-                if (!err as unknown instanceof E_.DATABASE_CONNEXION)
-                    throw new E_.DATABASE_QUERY(null, sql, params);
+                if (!err as unknown instanceof _E_.DATABASE_CONNEXION)
+                    throw new _E_.DATABASE_QUERY(null, sql, params);
                 throw err;
             }
         };

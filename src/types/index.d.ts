@@ -12,6 +12,6 @@ declare module 'fastify' {
     environment: environment,
     appLog: appLog,
     dbClient: dbClient,
-    ApiRoot: ApiRoot
+    auth: auth
   }
 }
