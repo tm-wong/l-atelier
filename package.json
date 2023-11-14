@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build:dev": "rm -r build && tsc -w || tsc -w",
-    "build": "rm -r build && tsc",
+    "build": "rm -r build && tsc || tsc",
     "dev": "NODE_ENV=dev nodemon build/server.js",
     "start": "node build/server.js",
     "eslint": "eslint ./src/**/*",
