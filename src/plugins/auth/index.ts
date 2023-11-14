@@ -90,7 +90,7 @@ export default fp(async function(fastify, opts) {
 
         // get certificate
         const cert = fs.readFileSync(
-            path.join(__dirname, '../../', '' + process.env.CERTIFICATE)
+            path.join(__dirname, '../../../', '' + process.env.CERTIFICATE)
         );
 
         // return verified tokern
