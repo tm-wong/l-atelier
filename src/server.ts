@@ -10,7 +10,6 @@ import pino from 'pino';
 import closeWithGrace from 'close-with-grace';
 
 const PORT: number = parseInt(<string>process.env.PORT, 10) || 7000;
-const HOST = process.env.HOST || '127.0.0.1';
 
 const server = fastify({
     logger: pino({ level: 'debug' }),
@@ -43,10 +42,7 @@ server.addHook('onClose', (instance, done) => {
 });
 
 // start listening
-server.listen({
-    port: PORT,
-    host: HOST
-}, err => {
+server.listen({ port: PORT }, err => {
     if (err) {
         server.log.error(err);
         // eslint-disable-next-line no-process-exit
