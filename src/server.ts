@@ -9,7 +9,7 @@ import { fastify } from 'fastify';
 import pino from 'pino';
 import closeWithGrace from 'close-with-grace';
 
-const HOST = process.env.HOST || '127.0.0.1';
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT: number = parseInt(<string>process.env.PORT, 10) || 7000;
 
 const server = fastify({
