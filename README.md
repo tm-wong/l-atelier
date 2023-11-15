@@ -6,7 +6,7 @@
 # 
 ###### ****************************************************************
 
-Cette application est construite avec Fastify en node.js (v18.15.0) et PostgreSQL (v15.x)
+Cette application est construite avec Fastify en node.js (v18.15.0) / TypeScript (v5.2.2) et PostgreSQL (v15.x)
 - https://www.fastify.io
 - https://www.postgresql.org
 
@@ -160,6 +160,16 @@ Via: 1.1 vegur
  ...
  
 ```
+
+---
+
+### Changelog
+
+#### [0.0.4] - 2023-11-15
+
+##### Changed
+
+- Swithed entire repository to TypeScript
 
 
 
