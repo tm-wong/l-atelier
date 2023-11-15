@@ -64,4 +64,10 @@ postgres-data
 apidoc
 build
 reload.sh
+.env.dev
+.env.docker
+.env.production
+Dockerfile
+docker-compose.yml
+
 
