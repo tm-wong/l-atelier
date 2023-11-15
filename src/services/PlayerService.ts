@@ -31,7 +31,7 @@ export default class PlayerService {
         const results = await this.repository.getOne(id);
         if (!results.length)
             throw new _E_.NOT_FOUND();
-        return results;
+        return results.shift();
     }
 
 
@@ -39,6 +39,6 @@ export default class PlayerService {
         const results = await this.repository.kpis();
         if (!results.length)
             throw new _E_.NOT_FOUND();
-        return results;
+        return results.shift();
     }
 }

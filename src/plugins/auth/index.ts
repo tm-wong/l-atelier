@@ -57,7 +57,7 @@ const tokenVerify = async(
         return await verify(token, cert);
     } catch(err) {
         log.error(err);
-        throw new _E_.BAD_REQUEST();
+        throw new _E_.UNAUTHORIZED();
     }
 };
 

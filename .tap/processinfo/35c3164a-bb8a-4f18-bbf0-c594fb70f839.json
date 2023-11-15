@@ -1,0 +1,46 @@
+{
+  "date": "2023-11-15T17:42:18.624Z",
+  "argv": [
+    "/home/theo/.nvm/versions/node/v18.18.0/bin/node",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/test/routes/api/players/api-players.test.js"
+  ],
+  "execArgv": [
+    "--loader=file:///home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/node_modules/@isaacs/ts-node-temp-fork-for-pr-2009/esm.mjs",
+    "--loader=file:///home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/node_modules/@tapjs/mock/dist/esm/legacy-loader.mjs",
+    "--no-warnings",
+    "--enable-source-maps",
+    "--loader=file:///home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs"
+  ],
+  "NODE_OPTIONS": "\"--loader=file:///home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs\" \"--no-warnings\"",
+  "cwd": "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts",
+  "pid": 331947,
+  "ppid": 331920,
+  "parent": null,
+  "uuid": "35c3164a-bb8a-4f18-bbf0-c594fb70f839",
+  "files": [
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/test/routes/api/players/api-players.test.js",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/app.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/common/errors.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/common/log.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/common/config.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/test/token.js",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/plugins/sensible.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/plugins/database/index.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/plugins/auth/index.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/plugins/environment/index.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/plugins/logger/index.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/routes/root.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/routes/api/index.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/routes/health/index.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/routes/api/players/index.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/services/PlayerService.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/repository/PlayerRepository.ts",
+    "/home/theo/Documents/theo-perso/l-atelier/l-atelier-ts/src/repository/Repository.ts"
+  ],
+  "sources": {},
+  "root": "35c3164a-bb8a-4f18-bbf0-c594fb70f839",
+  "externalID": "test/routes/api/players/api-players.test.js",
+  "code": 0,
+  "signal": null,
+  "runtime": 10763.848487
+}
