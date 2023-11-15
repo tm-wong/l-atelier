@@ -389,8 +389,6 @@ const playersRoutes: FastifyPluginAsync = async(
 
         try {
 
-            log.debug('=== request.params', request.params);
-
             // param id
             const { id } = request.params;
 

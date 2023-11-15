@@ -16,7 +16,7 @@ import {
 
 // log instance
 const log = getLogger('DATABASE');
-log.debug('=== log Ok');
+
 
 // database connection parameters
 // 1 - environment based parameters
@@ -26,16 +26,14 @@ const {
     DATABASE_SSL
 } = process.env;
 
+
 // 2 - SSL configuration
 const ssl = Number(DATABASE_SSL) === 1 && true || false;
-log.debug('=== ssl', ssl);
 
 const dbConnSsl = (
     env === 'dev' ||
     env === 'production'
 ) && { rejectUnauthorized: ssl } || ssl;
-
-log.debug('=== dbConnSsl', dbConnSsl);
 
 const opts: PoolConfig = {
     connectionString: '' + DATABASE_URL,
@@ -80,16 +78,10 @@ export default fp(async(
             // connexion
             const client = await connect();
 
-            log.debug('=== client', client?.query);
-
             try {
-
-                log.debug('=== query start');
 
                 // query
                 const result = await client.query(sql, params);
-
-                log.debug('=== result', result);
 
                 // result format
                 const content = (result) ? result.rows : null;

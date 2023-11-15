@@ -30,8 +30,6 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
         allowedHeaders: ['Accept', 'Content-Type', 'Authorization']
     });
 
-    log.debug('=== path.join(__dirname, apidoc)', path.join(__dirname, 'apidoc'));
-
     // Service de fichiers statiques
     // de façon à rendre la documentation accessible
     fastify.register(fastifyStatic, {

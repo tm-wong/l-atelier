@@ -15,7 +15,6 @@ export default class Repository {
         const { appLog } = fastify;
         this.log = appLog('REPOSITORY');
         this.db = fastify.dbClient();
-        this.log.debug('=== this.db', this.db)
     }
 
     get() {}

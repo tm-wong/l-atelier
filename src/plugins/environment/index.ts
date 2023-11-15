@@ -13,6 +13,6 @@ export default fp(async(
     opts
 ) => {
     fastify.decorate('environment', () => {
-        return process.env.NODE_ENV || 'prod';
+        return process.env.NODE_ENV || 'production';
     });
 });
