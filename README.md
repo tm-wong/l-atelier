@@ -165,12 +165,13 @@ Via: 1.1 vegur
 
 ### Changelog
 
-#### [2.0.0] - 2023-11-15
+#### [ 2.0.0 ] - 2023-11-15
 
 ##### Changed
 
 - Swithed entire repository to TypeScript
 - Comments have been translated to english while documentation remains in frernch
+- All errors get logged in catch-all at the root of the application ( app.ts ) which ligthens the overall log volume
 
 
 .
