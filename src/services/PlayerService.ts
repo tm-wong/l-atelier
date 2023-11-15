@@ -29,9 +29,6 @@ export default class PlayerService {
 
     async getOne(id: number) {
         const results = await this.repository.getOne(id);
-
-        this.log.debug('=== getOne results', results);
-
         if (!results.length)
             throw new _E_.NOT_FOUND();
         return results;
