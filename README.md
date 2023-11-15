@@ -170,7 +170,7 @@ Via: 1.1 vegur
 ##### Changed
 
 - Swithed entire repository to TypeScript
-
+- Comments have been translated to english while documentation remains in frernch
 
 
 .
