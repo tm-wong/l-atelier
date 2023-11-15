@@ -2,10 +2,10 @@
  * database.ts
  */
 
+
 // dependencies
 import fp from 'fastify-plugin';
 import getLogger from '../../common/log';
-
 import { _E_ } from '../../common/errors';
 
 import {
@@ -13,16 +13,20 @@ import {
     Pool
 } from 'pg';
 
+
 // log instance
 const log = getLogger('DATABASE');
 
+
 // database connection parameters
+// 1 - environment based parameters
 const {
     NODE_ENV : env,
     DATABASE_URL,
     DATABASE_SSL
 } = process.env;
 
+// 2 - SSL configuration
 const ssl = Number(DATABASE_SSL) === 1 && true || false;
 
 const dbConnSsl = (
@@ -35,14 +39,21 @@ const opts: PoolConfig = {
     ssl: dbConnSsl
 };
 
-// pool instance
+// 3 - pool instance
 const pool: Pool = new Pool(opts);
 
-// database access
-// through connection
+
+// database access connection
 const connect = async() => {
-    const client = await pool.connect();
-    return { client };
+
+    // this is so specific connexion error,
+    // if any, is logged and displayed specically
+    try {
+        return await pool.connect();
+    } catch(err) {
+        log.error(err);
+        throw new _E_.DATABASE_CONNEXION();
+    }
 };
 
 
@@ -57,19 +68,15 @@ export default fp(async(
     opts
 ) => {
 
-    fastify.decorate('dbClient', () => {
+    fastify.decorate('dbClient', async() => {
+
+        // connexion
+        const client = await connect();
 
         // database query wrapper
         const query = async(sql: string, params: [] = []) => {
 
             try {
-                // connexion
-                const { client } = await connect();
-
-                // connexion check
-                if (!client) {
-                    throw new _E_.DATABASE_CONNEXION();
-                }
 
                 // query
                 const result = await client.query(sql, params);
@@ -77,20 +84,27 @@ export default fp(async(
                 // result format
                 const content = (result) ? result.rows : null;
 
+                // output
+                return content;
+
+            } catch (err) {
+
+                log.error(err);
+
+                // Database Query Error
+                // accepts SQL and query parameters
+                // as parameters in order to
+                // display them in logs
+                throw new _E_.DATABASE_QUERY(null, sql, params);
+
+            } finally {
+
                 // client release for
                 // connexion to remain
                 // available for other
                 // database queries
                 client.release();
 
-                // output
-                return content;
-
-            } catch (err) {
-                log.error(err);
-                if (!err as unknown instanceof _E_.DATABASE_CONNEXION)
-                    throw new _E_.DATABASE_QUERY(null, sql, params);
-                throw err;
             }
         };
 
