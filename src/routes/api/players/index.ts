@@ -286,16 +286,8 @@ const playersRoutes: FastifyPluginAsync = async(
     // eslint-disable-next-line no-unused-vars
     fastify.get('/', async function(request, reply) {
 
-        try {
-
-            // invocation du service
-            return await service.get();
-
-        } catch (err) {
-            // relais de l'erreur
-            log.error(err);
-            throw err;
-        }
+        // invoke service
+        return await service.get();
     });
 
 
@@ -387,24 +379,18 @@ const playersRoutes: FastifyPluginAsync = async(
         reply: FastifyReply
     ) => {
 
-        try {
+        // param id
+        const { id } = request.params;
 
-            // param id
-            const { id } = request.params;
+        // verification
+        if (!id || !/^\d+$/.test(id.toString()))
+            throw httpErrors.badRequest();
 
-            // verification
-            if (!id || !/^\d+$/.test(id.toString()))
-                throw httpErrors.badRequest();
+        // invocation du service
+        return await service.getOne(id);
 
-            // invocation du service
-            return await service.getOne(id);
-
-        } catch (err) {
-            // relais de l'erreur
-            log.error(err);
-            throw err;
-        }
     });
+
 
     /**
      * @api {get} /api/players/kpis 3 - Indicateurs clés sur les joueurs
@@ -490,13 +476,9 @@ const playersRoutes: FastifyPluginAsync = async(
     // eslint-disable-next-line no-unused-vars
     fastify.get('/kpis', async function(request, reply) {
 
-        try {
-            return await service.kpis();
-        } catch (err) {
-            log.error(err);
-            throw err;
-        }
+        return await service.kpis();
     });
 };
+
 
 export default playersRoutes;
