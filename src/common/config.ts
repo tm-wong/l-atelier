@@ -3,7 +3,7 @@
  */
 
 // logger config
-let loggerConfig = {
+const loggerConfig = {
     appenders: { console: { type: 'stdout' } },
     categories: {
         default: {

@@ -5,16 +5,16 @@ WORKDIR /usr/src/app
 
 # Install app dependencies 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./ 
-RUN npm install 
+COPY package*.json ./
+RUN npm install
 
 
 # Bundle app source 
-COPY . . 
+COPY . .
 
 # generate apidoc
-RUN npm run apidoc 
+RUN npm run apidoc
 
 # Expose the port that the express are running 
-EXPOSE 3000 
-CMD [ "npm", "run", "start" ]
+EXPOSE 7000
+CMD [ "npm", "start" ]

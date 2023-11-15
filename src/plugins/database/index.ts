@@ -18,13 +18,21 @@ const log = getLogger('DATABASE');
 
 // database connection parameters
 const {
+    NODE_ENV : env,
     DATABASE_URL,
     DATABASE_SSL
 } = process.env;
 
+const ssl = Number(DATABASE_SSL) === 1 && true || false;
+
+const dbConnSsl = (
+    env === 'dev' ||
+    env === 'production'
+) && { rejectUnauthorized: ssl } || ssl;
+
 const opts: PoolConfig = {
     connectionString: '' + DATABASE_URL,
-    ssl: { rejectUnauthorized: Number(DATABASE_SSL) === 1 && true || false }
+    ssl: dbConnSsl
 };
 
 // pool instance

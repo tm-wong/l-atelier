@@ -9,6 +9,7 @@ import fastifyStatic from '@fastify/static';
 import { _E_ } from './common/errors';
 import getLogger from './common/log';
 
+
 import {
     FastifyInstance,
     FastifyPluginOptions
@@ -28,10 +29,10 @@ export default async(fastify: FastifyInstance, opts: FastifyPluginOptions) => {
         methods: ['GET'],
         allowedHeaders: ['Accept', 'Content-Type', 'Authorization']
     });
- 
+
     log.debug('=== path.join(__dirname, apidoc)', path.join(__dirname, 'apidoc'));
 
-    // Service de fichiers statiques 
+    // Service de fichiers statiques
     // de façon à rendre la documentation accessible
     fastify.register(fastifyStatic, {
         root: path.join(__dirname, 'apidoc')

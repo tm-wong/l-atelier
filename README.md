@@ -57,7 +57,7 @@ docker-compose up --build
 ---
 ## Test du service
 ```sh
-curl -i 0.0.0.0:3000/health
+curl -i 0.0.0.0:7000/health
 
 > HTTP/1.1 200 OK
 > vary: Origin
