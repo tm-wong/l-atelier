@@ -44,7 +44,6 @@ const playersRoutes: FastifyPluginAsync = async(
      *      Date: Mon, 19 Jun 2023 17:22:14 GMT
      *      Connection: keep-alive
      *      Keep-Alive: timeout=72
-     *
      *      {
      *        "status": 400,
      *        "message": "Bad Request"
