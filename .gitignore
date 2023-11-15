@@ -60,7 +60,7 @@ profile*
 # tap and nyc testing coverage output
 node_modules
 .nyc_output
-database/postgres-data
+postgres-data
 apidoc
 build
 reload.sh
