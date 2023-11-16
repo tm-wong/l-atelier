@@ -139,7 +139,7 @@ export const notFound = {
     }
 };
 
-export const serviceUnailable = {
+export const serviceUnavailable = {
     type: 'object',
     required: [ 'statusCode', 'message' ],
     additionalProperties: false,
