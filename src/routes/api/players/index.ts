@@ -9,8 +9,9 @@ import {
 } from 'fastify';
 
 import { RouteGenericInterface } from 'fastify/types/route';
-
 import PlayerService from '../../../services/PlayerService';
+import * as schema from '../../../schemas';
+
 
 const playersRoutes: FastifyPluginAsync = async(
     fastify,
@@ -19,8 +20,7 @@ const playersRoutes: FastifyPluginAsync = async(
 ) => {
 
     // route setup
-    const { appLog, httpErrors } = fastify;
-    const log = appLog('PLAYERS_ROUTES');
+    const { httpErrors } = fastify;
     const service = new PlayerService(fastify);
 
     // auth middleware
@@ -30,6 +30,7 @@ const playersRoutes: FastifyPluginAsync = async(
             throw httpErrors.unauthorized();
         }
     });
+
 
     /**
      * @apiDefine BadRequestError
@@ -283,8 +284,14 @@ const playersRoutes: FastifyPluginAsync = async(
      * @apiUse InternalServerError
      *
      */
+    fastify.get('/', {
+        schema: {
+            response: {
+                200: schema.playerList
+            }
+        }
     // eslint-disable-next-line no-unused-vars
-    fastify.get('/', async function(request, reply) {
+    },   async function(request, reply) {
 
         // invoke service
         return await service.get();
@@ -371,6 +378,9 @@ const playersRoutes: FastifyPluginAsync = async(
                 properties: {
                     id: { type: 'number' }
                 }
+            },
+            response: {
+                200: schema.player
             }
         }
     }, async(
@@ -473,8 +483,14 @@ const playersRoutes: FastifyPluginAsync = async(
      * @apiUse InternalServerError
      *
      */
+    fastify.get('/kpis', {
+        schema: {
+            response: {
+                200: schema.playerKpis
+            }
+        }
     // eslint-disable-next-line no-unused-vars
-    fastify.get('/kpis', async function(request, reply) {
+    }, async function(request, reply) {
 
         return await service.kpis();
     });
