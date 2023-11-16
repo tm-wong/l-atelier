@@ -287,7 +287,11 @@ const playersRoutes: FastifyPluginAsync = async(
     fastify.get('/', {
         schema: {
             response: {
-                200: schema.playerList
+                200: schema.playerList,
+                400: schema.badRequest,
+                401: schema.unauthorized,
+                403: schema.forbidden,
+                500: schema.serviceUnavailable
             }
         }
     // eslint-disable-next-line no-unused-vars
@@ -380,7 +384,11 @@ const playersRoutes: FastifyPluginAsync = async(
                 }
             },
             response: {
-                200: schema.player
+                200: schema.player,
+                400: schema.badRequest,
+                401: schema.unauthorized,
+                403: schema.forbidden,
+                500: schema.serviceUnavailable
             }
         }
     }, async(
@@ -486,7 +494,11 @@ const playersRoutes: FastifyPluginAsync = async(
     fastify.get('/kpis', {
         schema: {
             response: {
-                200: schema.playerKpis
+                200: schema.playerKpis,
+                400: schema.badRequest,
+                401: schema.unauthorized,
+                403: schema.forbidden,
+                500: schema.serviceUnavailable
             }
         }
     // eslint-disable-next-line no-unused-vars

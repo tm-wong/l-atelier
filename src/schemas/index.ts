@@ -98,3 +98,53 @@ export const playerKpis = {
         }
     }
 };
+
+export const badRequest = {
+    type: 'object',
+    required: [ 'statusCode', 'message' ],
+    additionalProperties: false,
+    properties: {
+        statusCode: { type: 'number' },
+        message: { type: 'string' }
+    }
+};
+
+export const unauthorized = {
+    type: 'object',
+    required: [ 'statusCode', 'message' ],
+    additionalProperties: false,
+    properties: {
+        statusCode: { type: 'number' },
+        message: { type: 'string' }
+    }
+};
+
+export const forbidden = {
+    type: 'object',
+    required: [ 'statusCode', 'message' ],
+    additionalProperties: false,
+    properties: {
+        statusCode: { type: 'number' },
+        message: { type: 'string' }
+    }
+};
+
+export const notFound = {
+    type: 'object',
+    required: [ 'statusCode', 'message' ],
+    additionalProperties: false,
+    properties: {
+        statusCode: { type: 'number' },
+        message: { type: 'string' }
+    }
+};
+
+export const serviceUnailable = {
+    type: 'object',
+    required: [ 'statusCode', 'message' ],
+    additionalProperties: false,
+    properties: {
+        statusCode: { type: 'number' },
+        message: { type: 'string' }
+    }
+};
