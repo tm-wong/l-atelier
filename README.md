@@ -168,7 +168,7 @@ Via: 1.1 vegur
 
 #### [ 2.0.5 ] - 2023-11-16
 
-- Implemented JSON shema to requests and 200 responses 
+- Implemented JSON shema to requests and responses
 
 #### [ 2.0.0 ] - 2023-11-15
 
