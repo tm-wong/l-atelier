@@ -57,12 +57,12 @@ profile*
 *clinic*
 *flamegraph*
 
-# tap and nyc testing coverage output
-node_modules
-.nyc_output
-postgres-data
-apidoc
-build
-reload.sh
-.tap
+# generated code
+examples/typescript-server.js
+test/types/index.js
+
+# compiled app
+dist
+notes
+security
 

@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'FastifyApp Sample SAM Template for app
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  FastifyApp:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/lambda.handler
+      PackageType: Zip
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 500
+      Events:
+        AppEventAPI:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: any
+      CodeUri: FastifyApp
+    Metadata:
+      SamResourceId: FastifyApp
+Outputs:
+  AppEventAPI:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/
+  FastifyApp:
+    Description: Hello World Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - FastifyApp
+      - Arn
+  FastifyAppIamRole:
+    Description: Implicit IAM Role created for FastifyApp function
+    Value:
+      Fn::GetAtt:
+      - FastifyAppRole
+      - Arn
