@@ -9,7 +9,7 @@
   "scripts": {
     "config": "cp ./.env.* ./dist/ && cp ./security/* ./dist/",
     "postinstall": "tsc",
-    "test": "npm run build:ts && tsc -p test/tsconfig.test.json && cross-env TS_NODE_FILES=true tap --ts test/**/*.test.ts",
+    "test": "npm run build:ts && tsc -p test/tsconfig.json && cross-env TS_NODE_FILES=true tap ./test",
     "start": "npm run build:ts && fastify start -l info dist/app.js",
     "build:ts": "npm run config && tsc",
     "dev": "npm run config && tsc && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"tsc -w\" \"NODE_ENV=dev fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js\""
@@ -32,14 +32,18 @@
     "typescript": "^5.3.2"
   },
   "devDependencies": {
+    "@types/aws-lambda-fastify": "^1.4.5",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.10.0",
     "@types/pg": "^8.10.9",
-    "@types/tap": "^15.0.11",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
+    "eslint": "^8.54.0",
     "fastify-tsconfig": "^2.0.0",
+    "i": "^0.3.7",
     "json-schema-to-ts": "^2.9.2",
+    "npm": "^10.2.4",
     "tap": "^18.6.1",
     "ts-node": "^10.9.1"
   }

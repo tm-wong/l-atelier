@@ -65,4 +65,8 @@ test/types/index.js
 dist
 notes
 security
-
+.tap
+.env*
+test/postman-collection
+test/token.ts
+.aws-sam/build

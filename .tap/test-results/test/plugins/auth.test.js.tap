@@ -1,0 +1,8 @@
+TAP version 14
+=== OK
+# Subtest: auth token is parsed and decoded
+    ok 1 - should be equal
+    1..1
+ok 1 - auth token is parsed and decoded # time=7.6ms
+
+1..1

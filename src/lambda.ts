@@ -2,6 +2,7 @@
  * lambda.ts
  */
 
+/* eslint-disable */
 const awsLambdaFastify = require('aws-lambda-fastify');
 import fastify from 'fastify';
 import app from './app.js';
@@ -13,3 +14,4 @@ server.register(app);
 const proxy = awsLambdaFastify(server);
 
 exports.handler = proxy;
+/* eslint-enable */
